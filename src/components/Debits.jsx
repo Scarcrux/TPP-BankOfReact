@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios'
 import ShowCredits from './ShowCredits'
+import AccountBalance from './AccountBalance'
 import AddCreditsPage from './AddCreditsPage'
 import Convoluted from './Convoluted'
 import display from './ShowCredits';
 
-class Credits extends Component {
+class Debits extends Component {
     constructor(props) {
         super(props) 
         this.state = {
@@ -14,7 +15,7 @@ class Credits extends Component {
             userData: [],
             credsData: [],
             description: " ",
-            amount: " ",
+            amount: 0,
             date: " ",
             display: false
 
@@ -24,16 +25,28 @@ class Credits extends Component {
     async componentDidMount () {
 
         try {
-          let userData = await axios.get (
-              'https://moj-api.herokuapp.com/credits'
+          let response = await axios.get (
+              'https://moj-api.herokuapp.com/debits'
           )
-          this.setState ({userData: userData.data})
+          this.setState ({userData: response.data,
+                         amount: response.data.forEach((elem) => {return (elem.amount += this.state.amount)})})
       } catch (error) {
           console.error(error)
         }
       }
 
-      addCredits = () => {
+     async incrementCount () {
+
+        let amount = 0
+
+        fetch ('https://moj-api.herokuapp.com/debits')
+        .then((response) => response.json())
+        .then((response) => console.log(response.forEach((elem) => {console.log(elem.amount)})))
+        .catch ((error) => console.error(error))
+     
+  }
+
+      addDebits = () => {
 
         this.baseDes = this.state.description
         this.baseAm = this.state.amount
@@ -47,7 +60,7 @@ class Credits extends Component {
 
       }
 
-      displayCreds = () => {
+      displayDebs = () => {
         this.setState ({display: true})
       }
 
@@ -61,7 +74,7 @@ class Credits extends Component {
       if (this.state.display) {
       
         return (<div>
-          <h4>Add Credits</h4>
+          <h4>Add Debits</h4>
           <div><Link to="/">Home</Link></div>
           <div><Link to="/Credits">Back</Link></div>
 
@@ -97,13 +110,14 @@ class Credits extends Component {
               </input>
               </div>
           </div>
-          <button className="addButton" onClick={this.addCredits}>Add</button>
+          <button className="addButton" onClick={this.addDebits}>Add</button>
       </div>)
        } else { return (
         <div>
-            <h1>Credits</h1>
+            <h1>Debits</h1>
+            <h2>{console.log(this.state.amount)}</h2>
             <div><Link to = "/">Home</Link></div>
-            <button onClick={this.displayCreds}>Add Credits</button>
+            <button onClick={this.displayDebs}>Add Debits</button>
             <div>
                 {this.state.userData.map((elem) => {return (<ShowCredits  description = {elem.description}
                                                                                 amount = {elem.amount}
@@ -116,4 +130,4 @@ class Credits extends Component {
     }
 }
 
-export default Credits
+export default Debits

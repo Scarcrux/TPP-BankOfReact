@@ -4,9 +4,10 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Home from './components/Home';
 import UserProfile from './components/UserProfile';
 import LogIn from './components/Login';
-import Credits from './components/Credits'
-import AddCreditsPage from './components/AddCreditsPage'
-import axios from 'axios'
+import Credits from './components/Credits';
+import AddCreditsPage from './components/AddCreditsPage';
+import Debits from './components/Debits';
+import axios from 'axios';
 
 class App extends Component {
   constructor() {
@@ -44,7 +45,8 @@ class App extends Component {
     const HomeComponent = () => (<Home accountBalance={this.state.accountBalance}/>);
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} {...this.props}/>)
     const CreditsComponent = () => (<Credits />)
-    const AddCreditsComponent = () => (<AddCreditsPage/>)
+    const DebitsComponent = () => (<Debits />)
+    const AddCreditsComponent = () => (<AddCreditsPage />)
     const UserProfileComponent = () => (
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  />
   );
@@ -57,6 +59,7 @@ class App extends Component {
           <Route path="/credits" render ={CreditsComponent}/>
           <Route path="/login" render={LogInComponent}/>
           <Route path="/userProfile" render={UserProfileComponent}/>
+          <Route path="/Debits" render={DebitsComponent}/>
         </Switch>
       </Router>
     );
