@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios'
 import ShowCredits from './ShowCredits'
+import './bank.css';
 import AddCreditsPage from './AddCreditsPage'
 import Convoluted from './Convoluted'
 import display from './ShowCredits';

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios'
 import ShowCredits from './ShowCredits'
+import './bank.css';
 import AccountBalance from './AccountBalance'
 import AddCreditsPage from './AddCreditsPage'
 import Convoluted from './Convoluted'
@@ -117,7 +118,7 @@ class Debits extends Component {
             <h1>Debits</h1>
             <h2>{console.log(this.state.amount)}</h2>
             <div><Link to = "/">Home</Link></div>
-            <button onClick={this.displayDebs}>Add Debits</button>
+            <button class ="button" onClick={this.displayDebs}>Add Debits</button>
             <div>
                 {this.state.userData.map((elem) => {return (<ShowCredits  description = {elem.description}
                                                                                 amount = {elem.amount}

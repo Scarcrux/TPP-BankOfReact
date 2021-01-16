@@ -1,7 +1,10 @@
 import React from 'react'
+import './bank.css';
 
 const display = (props) => {
     return (
+
+        <div class ="div">
 
         <div className = "description">
             description: {props.description}
@@ -11,6 +14,7 @@ const display = (props) => {
                     date: {props.date}
                 </div>
             </div>
+        </div>
         </div>
     )
 }

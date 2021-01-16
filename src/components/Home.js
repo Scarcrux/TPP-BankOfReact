@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import AccountBalance from './AccountBalance';
 import {Link} from 'react-router-dom';
+import './bank.css';
 
 class Home extends Component {
   render() {
     return (
-        <div>
-          <img src="https://letstalkpayments.com/wp-content/uploads/2016/04/Bank.png" alt="bank"/>
+        <div class ="div">
+          <img src="https://image.shutterstock.com/image-vector/bank-icon-logo-vector-260nw-399995245.jpg" alt="bank"/>
           <h1>Bank of React</h1>
 
           <Link to="/userProfile">User Profile</Link>
